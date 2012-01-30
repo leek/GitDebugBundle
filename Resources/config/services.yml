@@ -1,0 +1,9 @@
+parameters:
+
+services:
+    data_collector.leek_git_debug:
+        class: Leek\GitDebugBundle\DataCollector\GitDataCollector
+        calls:
+            - [ setKernel, ["@kernel"] ]
+        tags:
+            - { name: data_collector, template: "LeekGitDebugBundle:Collector:gitdebug", id: "leek_git_debug" }
