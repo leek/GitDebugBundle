@@ -9,7 +9,7 @@ Adds useful Git information to the Symfony2 debug toolbar.
 ##### 1. Add the following to you `deps` file:
 
     [LeekGitDebugBundle]
-        git=git@github.com:leek/GitDebugBundle.git
+        git=https://leek@github.com/leek/GitDebugBundle.git
         target=bundles/Leek/GitDebugBundle
     
 ##### 2. Run the vendors install script:
