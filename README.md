@@ -2,7 +2,7 @@
 
 Adds useful Git information to the Symfony2 debug toolbar.
 
-![Example Toolbar](http://i.imgur.com/gO4OH.png)
+![Example Toolbar](http://i.imgur.com/ewaiC.png)
 
 ## Installation
 
