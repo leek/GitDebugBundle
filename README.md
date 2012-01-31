@@ -2,6 +2,12 @@
 
 Adds useful Git information to the Symfony2 debug toolbar.
 
+Currently, this bundle adds the following:
+
+ * Current branch name to toolbar
+ * Full branch list at debug menu
+ * Full tag list at debug menu
+
 ![Example Toolbar](http://i.imgur.com/ewaiC.png)
 
 ## Installation
@@ -29,7 +35,3 @@ Adds useful Git information to the Symfony2 debug toolbar.
         $bundles[] = new Leek\GitDebugBundle\LeekGitDebugBundle();
         
 That's it! You should now see your current Git branch on the debug toolbar.
-
-## Future Plans
-
- * Provide more Git information (list all branches, origin URL, etc)
