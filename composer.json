@@ -1,9 +1,9 @@
 {
     "name": "leek/git-debug-bundle",
     "type": "symfony-bundle",
-    "description": "Leek GitDebugBundle",
-    "keywords": ["Leek", "Git"],
-    "homepage": "http://symfony.com",
+    "description": "Adds useful Git information to Symfony2's Debug Toolbar",
+    "keywords": ["leek", "git", "debug", "toolbar"],
+    "homepage": "https://github.com/leek/GitDebugBundle",
     "license": "MIT",
     "authors": [
         {
