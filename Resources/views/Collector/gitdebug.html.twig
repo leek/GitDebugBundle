@@ -22,11 +22,33 @@
 {% block panel %}
     <h2>Git</h2>
 
-    <p>
-        {% if collector.branch is empty %}
-            <em>Could not fetch branch name from HEAD.</em>
-        {% else %}
-            <label><strong>Branch:</strong></label> {{ collector.branch }}
-        {% endif %}
-    </p>
+    {% if collector.branches is not empty %}
+        <h3 style="margin: 10px 0">Branches</h3>
+        <ul style="margin-left: 25px">
+            {% for branch in collector.branches %}
+                <li style="list-style-type: circle; font-size: 0.9em; padding: 2px 0; font-family: monospace;">
+                    {% if branch == collector.branch %}
+                        <strong style="color: green">{{ branch }}</strong>
+                    {% else %}
+                        {% if 'remotes' in branch %}
+                            <span style="color: red">{{ branch }}</span>
+                        {% else %}
+                            {{ branch }}
+                        {% endif %}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if collector.tags is not empty %}
+        <h3 style="margin: 10px 0">Tags</h3>
+        <ul style="margin-left: 25px">
+            {% for tag in collector.tags %}
+                <li style="list-style-type: circle; font-size: 0.9em; padding: 2px 0; font-family: monospace;">
+                    {{ tag }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}
