@@ -15,7 +15,7 @@ Currently, this bundle adds the following:
 ##### 1. Add the following to you `deps` file:
 
     [LeekGitDebugBundle]
-        git=https://leek@github.com/leek/GitDebugBundle.git
+        git=git://github.com/leek/GitDebugBundle.git
         target=bundles/Leek/GitDebugBundle
     
 ##### 2. Run the vendors install script:
