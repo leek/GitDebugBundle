@@ -205,7 +205,9 @@ class GitDataCollector extends DataCollector
             $fileHandle = fopen($refsFile, 'r');
             while ($line = fgets($fileHandle)) {
                 $parsed = explode('refs/', $line);
-                $refs[] = trim($parsed[1]);
+                if (isset($parsed[1])) {
+                    $refs[] = trim($parsed[1]);
+                }
             }
             fclose($fileHandle);
         }
