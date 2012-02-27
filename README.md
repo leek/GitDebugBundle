@@ -33,6 +33,8 @@ php bin/vendors install
 ##### 3. Add the `Leek` namespace to `app/autoload.php`:
 
 ```php
+<?php
+// ...
     $loader->registerNamespaces(array(
         // ...
         'Leek'                         => __DIR__.'/../vendor/bundles',
@@ -41,6 +43,8 @@ php bin/vendors install
 ##### 4. Setup the bundle to load only on your `dev` or `test` environment(s) in `app/appKernel.php`:
    
 ```php
+<?php
+// ...
     if (in_array($this->getEnvironment(), array('dev', 'test'))) {
         // ...
         $bundles[] = new Leek\GitDebugBundle\LeekGitDebugBundle();
