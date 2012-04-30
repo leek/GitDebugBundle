@@ -9,19 +9,24 @@ use Symfony\Component\HttpFoundation\Response;
 class GitDataCollector extends DataCollector
 {
     /**
-     * @var \AppKernel
-     */
-    protected $kernel;
-
-    /**
      * @var string
      */
-    protected $gitRootDir;
+    private $gitRootDir;
 
     /**
      * @var array
      */
-    protected $refsInfo;
+    private $refsInfo;
+
+    /**
+     * Constructor
+     *
+     * @param string $kernelRootDir
+     */
+    public function __construct($kernelRootDir)
+    {
+        $this->gitRootDir = realpath($kernelRootDir . '/../.git');
+    }
 
     /**
      * Collects data for the given Request and Response.
@@ -33,8 +38,8 @@ class GitDataCollector extends DataCollector
     public function collect(Request $request, Response $response, \Exception $exception = null)
     {
         $this->data = array(
-            'git_root' => $this->getGitRootDir(),
-            'branch'   => $this->_getCurrentBranch(),
+            'git_root' => $this->gitRootDir,
+            'branch'   => $this->getCurrentBranch(),
         );
     }
 
@@ -51,7 +56,7 @@ class GitDataCollector extends DataCollector
      */
     public function getBranches()
     {
-        $branches = array_merge($this->_getLocalBranches(), $this->_getBranches());
+        $branches = array_merge($this->getLocalBranches(), $this->getRefsBranches());
         $branches = array_unique($branches);
         return $branches;
     }
@@ -61,7 +66,7 @@ class GitDataCollector extends DataCollector
      */
     public function getTags()
     {
-        $tags = array_merge($this->_getLocalTags(), $this->_getTags());
+        $tags = array_merge($this->getLocalTags(), $this->getRefsTags());
         $tags = array_unique($tags);
         return $tags;
     }
@@ -69,24 +74,9 @@ class GitDataCollector extends DataCollector
     /**
      * @return string
      */
-    public function getGitRootDir()
+    protected function getCurrentBranch()
     {
-        if ($this->gitRootDir === null) {
-            if (isset($this->data['git_root']) && !empty($this->data['git_root'])) {
-                $this->gitRootDir = $this->data['git_root'];
-            } else {
-                $this->gitRootDir = $this->kernel->getRootDir() . '/../.git';
-            }
-        }
-        return $this->gitRootDir;
-    }
-
-    /**
-     * @return string
-     */
-    protected function _getCurrentBranch()
-    {
-        $headFile = $this->getGitRootDir() . '/HEAD';
+        $headFile = $this->gitRootDir . '/HEAD';
         $branch   = null;
 
         if (file_exists($headFile)) {
@@ -108,9 +98,9 @@ class GitDataCollector extends DataCollector
     /**
      * @return array
      */
-    protected function _getBranches()
+    protected function getRefsBranches()
     {
-        $refs     = $this->_getRefsInfo();
+        $refs     = $this->getRefsInfo();
         $branches = array();
 
         foreach ($refs as $ref) {
@@ -127,10 +117,10 @@ class GitDataCollector extends DataCollector
     /**
      * @return array
      */
-    public function _getLocalBranches($ref = null)
+    protected function getLocalBranches($ref = null)
     {
         $branches = array();
-        $base     = $this->getGitRootDir() . "/refs/heads";
+        $base     = $this->gitRootDir . '/refs/heads';
         $path     = $base . (!empty($ref) ? "/{$ref}" : '');
         $files    = glob("{$path}/*");
 
@@ -138,7 +128,7 @@ class GitDataCollector extends DataCollector
             $parts = explode('refs/heads/', $file);
             $name  = $parts[count($parts) - 1];
             if (is_dir($file)) {
-                $branches = array_merge($branches, $this->_getLocalBranches($name));
+                $branches = array_merge($branches, $this->getLocalBranches($name));
             } else {
                 $branches[] = trim($name);
             }
@@ -150,9 +140,9 @@ class GitDataCollector extends DataCollector
     /**
      * @return array
      */
-    protected function _getTags()
+    protected function getRefsTags()
     {
-        $refs = $this->_getRefsInfo();
+        $refs = $this->getRefsInfo();
         $tags = array();
 
         foreach ($refs as $ref) {
@@ -169,10 +159,10 @@ class GitDataCollector extends DataCollector
     /**
      * @return array
      */
-    public function _getLocalTags($ref = null)
+    protected function getLocalTags($ref = null)
     {
         $tags  = array();
-        $base  = $this->getGitRootDir() . "/refs/tags";
+        $base  = $this->gitRootDir . '/refs/tags';
         $path  = $base . (!empty($ref) ? "/{$ref}" : '');
         $files = glob("{$path}/*");
 
@@ -180,7 +170,7 @@ class GitDataCollector extends DataCollector
             $parts = explode('refs/tags/', $file);
             $name  = $parts[count($parts) - 1];
             if (is_dir($file)) {
-                $tags = array_merge($tags, $this->_getLocalTags($name));
+                $tags = array_merge($tags, $this->getLocalTags($name));
             } else {
                 $tags[] = trim($name);
             }
@@ -192,13 +182,13 @@ class GitDataCollector extends DataCollector
     /**
      * @return array
      */
-    protected function _getRefsInfo()
+    protected function getRefsInfo()
     {
         if (!empty($this->refsInfo)) {
             return $this->refsInfo;
         }
 
-        $refsFile = $this->getGitRootDir() . '/packed-refs';
+        $refsFile = $this->gitRootDir . '/packed-refs';
         $refs     = array();
 
         if (file_exists($refsFile)) {
