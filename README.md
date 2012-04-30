@@ -14,7 +14,7 @@ Adds useful Git information to the Symfony2 debug toolbar.
 
 ![Example Menu #2](http://i.imgur.com/hEss5.png)
 
-## Installation
+## Installation **(Symfony 2.0.x only)**
 
 ##### 1. Add the following to your `deps` file:
 
@@ -22,6 +22,7 @@ Adds useful Git information to the Symfony2 debug toolbar.
     [LeekGitDebugBundle]
         git=git://github.com/leek/GitDebugBundle.git
         target=bundles/Leek/GitDebugBundle
+        version=origin/2.0
 ```
     
 ##### 2. Run the vendors install script:
