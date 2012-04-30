@@ -2,14 +2,10 @@
 
 {% block toolbar %}
     {% set icon %}
-        <img alt="Git Logo" style="padding-top: 5px; padding-bottom: 5px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAA3NCSVQICAjb4U/gAAAAS1BMVEVERETq6urAwMBtbW3////Q0NBgYGBSUlJ/f3/v7+/f3994eHjMzMz5+flLS0vZ2dlZWVnJycny8vLj4+PExMRPT0/7+/tHR0fh4eF3FFxpAAAAGXRSTlP/////AP//////////////////////////el2NcgAAAAlwSFlzAAALEgAACxIB0t1+/AAAAB50RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNS4xqx9I6wAAAGxJREFUGJW1kNsKgCAMQC01Z2KbN/T/v7Stgnqox87DwR2QwZR5Qf0S48TEpznahcHTKLYcfWLy6Sz234vmJK9axalecQkyai0O+oiWVCdkK0Kk3kkWIWwOBkJrMAa4Bvj13Zi1yFhu/3OlF3aiqAloehvNYgAAAABJRU5ErkJggg==" />
-        <span class="sf-toolbar-status">{{ collector.branch }}</span>
+        <img alt="Git Logo" style="max-width: 20px; max-height: 20px; border-width: 0; vertical-align: middle; margin-right: 5px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAA3NCSVQICAjb4U/gAAAAS1BMVEVERETq6urAwMBtbW3////Q0NBgYGBSUlJ/f3/v7+/f3994eHjMzMz5+flLS0vZ2dlZWVnJycny8vLj4+PExMRPT0/7+/tHR0fh4eF3FFxpAAAAGXRSTlP/////AP//////////////////////////el2NcgAAAAlwSFlzAAALEgAACxIB0t1+/AAAAB50RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNS4xqx9I6wAAAGxJREFUGJW1kNsKgCAMQC01Z2KbN/T/v7Stgnqox87DwR2QwZR5Qf0S48TEpznahcHTKLYcfWLy6Sz234vmJK9axalecQkyai0O+oiWVCdkK0Kk3kkWIWwOBkJrMAa4Bvj13Zi1yFhu/3OlF3aiqAloehvNYgAAAABJRU5ErkJggg==" />
     {% endset %}
     {% set text %}
-        <div class="sf-toolbar-info-piece">
-            <b>Current branch</b>
-            <span>{{ collector.branch }}</span>
-        </div>
+        <span>{{ collector.branch }}</span>
     {% endset %}
     {% include 'WebProfilerBundle:Profiler:toolbar_item.html.twig' with { 'link': profiler_url } %}
 {% endblock %}
@@ -17,7 +13,7 @@
 {% block menu %}
     <span class="label">
         <span class="icon">
-            <img alt="Git Logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAA3NCSVQICAjb4U/gAAAAgVBMVEVAQEDn5+ekpKRgYGDU1NSZmZm7u7t/f39FRUX////JyclRUVG0tLRmZmb19fXf39/t7e1dXV1mZmZMTEzS0tLd3d3Dw8P39/fz8/Ph4eFvb29YWFhKSkq5ubnb29tWVlbPz8/7+/tISEjZ2dnq6upUVFTj4+Pp6en5+flGRkZeXl4ktJLCAAAAK3RSTlP///////////8A////////////////////////////////////////////AOT3HgAAAAlwSFlzAAALEgAACxIB0t1+/AAAAB50RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNS4xqx9I6wAAALJJREFUOI3tkMsOgkAMRS/iMFYpYArKO4KP6P//oAg1slMSEjec1cn0pJkU9ANYonmjyh9IKVDzG4rUKo3YHbhRpOYGdFbjKVEWDtypUQuJjh/9z50yaw/6EFsbq3rWOqMoBlbvCeCpGiCZFhUiwEMkpItIC7QiAa1FNkBZFhp1SU9CjhrS1/Ie0SjnPXBl7i7OXAAFc0A18w5wOZ/940SOMSed1MbUqltjolH0hSWaMXoCGA8vDMiWOI8AAAAASUVORK5CYII=" />
+            <img alt="Git Logo" style="max-width: 32px; max-height: 32px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAA3NCSVQICAjb4U/gAAAAgVBMVEVAQEDn5+ekpKRgYGDU1NSZmZm7u7t/f39FRUX////JyclRUVG0tLRmZmb19fXf39/t7e1dXV1mZmZMTEzS0tLd3d3Dw8P39/fz8/Ph4eFvb29YWFhKSkq5ubnb29tWVlbPz8/7+/tISEjZ2dnq6upUVFTj4+Pp6en5+flGRkZeXl4ktJLCAAAAK3RSTlP///////////8A////////////////////////////////////////////AOT3HgAAAAlwSFlzAAALEgAACxIB0t1+/AAAAB50RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNS4xqx9I6wAAALJJREFUOI3tkMsOgkAMRS/iMFYpYArKO4KP6P//oAg1slMSEjec1cn0pJkU9ANYonmjyh9IKVDzG4rUKo3YHbhRpOYGdFbjKVEWDtypUQuJjh/9z50yaw/6EFsbq3rWOqMoBlbvCeCpGiCZFhUiwEMkpItIC7QiAa1FNkBZFhp1SU9CjhrS1/Ie0SjnPXBl7i7OXAAFc0A18w5wOZ/940SOMSed1MbUqltjolH0hSWaMXoCGA8vDMiWOI8AAAAASUVORK5CYII=" />
         </span>
         <strong>Git</strong>
     </span>
