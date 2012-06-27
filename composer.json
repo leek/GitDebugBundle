@@ -2,13 +2,17 @@
     "name": "leek/git-debug-bundle",
     "type": "symfony-bundle",
     "description": "Adds useful Git information to the Symfony2 Debug Toolbar",
-    "keywords": ["leek", "git", "debug", "toolbar"],
+    "keywords": ["git", "debug", "toolbar"],
     "homepage": "https://github.com/leek/GitDebugBundle",
     "license": "MIT",
     "authors": [
         {
             "name": "Chris Jones",
             "email": "leeked@gmail.com"
+        },
+        {
+            "name": "Symfony Community",
+            "homepage": "https://github.com/leek/GitDebugBundle/contributors"
         }
     ],
     "require": {
