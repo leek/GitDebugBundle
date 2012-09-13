@@ -2,9 +2,9 @@
 
 Adds useful Git information to the Symfony2 debug toolbar.
 
-##### Current branch in toolbar
+##### Current branch in toolbar (Symfony 2.1)
 
-![Example Toolbar](http://i.imgur.com/ewaiC.png)
+![Example Toolbar](http://i.imgur.com/Sa6z0.png)
 
 ##### Branch list in menu
 
