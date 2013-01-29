@@ -48,7 +48,7 @@ class GitDataCollector extends DataCollector
      */
     public function getBranch()
     {
-        return $this->data['branch'];
+        return $this->getCurrentBranch();
     }
 
     /**
@@ -76,7 +76,7 @@ class GitDataCollector extends DataCollector
      */
     protected function getCurrentBranch()
     {
-        $headFile = $this->gitRootDir . '/HEAD';
+        $headFile = $this->data["git_root"] . '/HEAD';
         $branch   = null;
 
         if (file_exists($headFile)) {
@@ -120,7 +120,7 @@ class GitDataCollector extends DataCollector
     protected function getLocalBranches($ref = null)
     {
         $branches = array();
-        $base     = $this->gitRootDir . '/refs/heads';
+        $base     = $this->data["git_root"] . '/refs/heads';
         $path     = $base . (!empty($ref) ? "/{$ref}" : '');
         $files    = glob("{$path}/*");
 
@@ -162,7 +162,7 @@ class GitDataCollector extends DataCollector
     protected function getLocalTags($ref = null)
     {
         $tags  = array();
-        $base  = $this->gitRootDir . '/refs/tags';
+        $base  = $this->data["git_root"] . '/refs/tags';
         $path  = $base . (!empty($ref) ? "/{$ref}" : '');
         $files = glob("{$path}/*");
 
@@ -188,7 +188,7 @@ class GitDataCollector extends DataCollector
             return $this->refsInfo;
         }
 
-        $refsFile = $this->gitRootDir . '/packed-refs';
+        $refsFile = $this->data["git_root"] . '/packed-refs';
         $refs     = array();
 
         if (file_exists($refsFile)) {
