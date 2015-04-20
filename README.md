@@ -1,4 +1,4 @@
-# LeekGitDebugBundle
+# LeekGitDebugBundle [![Project Status](https://stillmaintained.com/leek/GitDebugBundle.png)](https://stillmaintained.com/leek/GitDebugBundle)
 
 Adds useful Git information to the Symfony2 debug toolbar.
 
